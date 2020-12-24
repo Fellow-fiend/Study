@@ -1,0 +1,24 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main()
+{
+    const int BB = 10000, UB = 100000, Size; // Bottom Border & Upper Border
+    int number[Size] {}, temp;
+    for (int i = BB; i < UB; ++i) {
+        temp = i;
+        for (int j = 0; j < Size; ++j) {
+            number[j] = temp % 10;
+            temp /= 10;
+        }
+        for (int i = 0; i < Size; ++i) {
+            for (int j = 0; j < Size; ++j)
+                if(i != j && number[i] == number[j])
+                    goto end;
+        }
+        
+        end:
+    }
+    return 0;
+}
