@@ -2,14 +2,26 @@
 #include <cstdlib>
 #include <ctime>
 
+// генерация тетради метеостанции
 void meteo(double* days, const int count);
 
 int main()
 {
+    // в Августе 1959 года был 31 один день
     const int DAYS = 31;
     double days[DAYS] {};
     meteo(days, DAYS);
-    for(/*проверка на дни*/)
+    double temp = 0;
+    // проверка выходной ли день или нет + нахождение наибольшей температуры
+    for(int i = 0; i < DAYS; ++i)
+    {
+        if(i % 7 == 0 || i % 7 == 1)
+        {   
+            std::cout << i+1 << " of August: " << days[i] << std::endl; 
+            temp = temp < days[i] ? days[i] : temp;
+        }
+    }
+    std::cout << std::endl << temp << " degrees Celsius" << std::endl;
     return 0;
 }
 
@@ -17,5 +29,5 @@ void meteo(double *days, const int count)
 {
     srand(static_cast<unsigned int>(time(0)));
     for(int i = 0; i < count; ++i)
-        days[i] = rand() % 50 - rand() % 100;
+        days[i] = rand() % 20 + 11 - double(rand() % 100 / 100);
 }
